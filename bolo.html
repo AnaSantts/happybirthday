@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>20 anos</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+
+      background: #000;
+
+      transition: opacity 1.5s ease;
+    }
+
+    .cena {
+      position: relative;
+
+      width: 100vw;
+      height: 100vh;
+
+      overflow: hidden;
+
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
+
+      background:
+        radial-gradient(
+          circle at 50% 55%,
+          #17100a 0%,
+          #080604 38%,
+          #020202 72%,
+          #000 100%
+        );
+    }
+
+    .escuridao {
+      position: absolute;
+
+      inset: 0;
+
+      z-index: 50;
+
+      background: #000;
+
+      pointer-events: none;
+
+      animation: revelarCena 4.5s ease forwards;
+    }
+
+    @keyframes revelarCena {
+      0% {
+        opacity: 1;
+      }
+
+      55% {
+        opacity: 0.82;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
+
+    .luz-ambiente {
+      position: absolute;
+
+      width: 70vw;
+      height: 60vh;
+
+      left: 50%;
+      top: 50%;
+
+      transform: translate(-50%, -42%);
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          ellipse,
+          rgba(255, 184, 67, 0.14),
+          rgba(255, 130, 30, 0.04) 35%,
+          transparent 70%
+        );
+
+      filter: blur(35px);
+
+      opacity: 0;
+
+      animation:
+        ambienteAparecer
+        4s ease 0.7s forwards;
+
+      pointer-events: none;
+    }
+
+    @keyframes ambienteAparecer {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .bolo {
+      position: relative;
+
+      z-index: 10;
+
+      width: min(650px, 82vw);
+
+      height: min(620px, 78vh);
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      justify-content: flex-end;
+
+      opacity: 0;
+
+      transform:
+        translateY(30px)
+        scale(0.96);
+
+      animation:
+        boloAparecer
+        3.5s cubic-bezier(0.22, 1, 0.36, 1)
+        0.8s forwards;
+    }
+
+    @keyframes boloAparecer {
+      to {
+        opacity: 1;
+
+        transform:
+          translateY(0)
+          scale(1);
+      }
+    }
+
+    .brilho-bolo {
+      position: absolute;
+
+      width: 80%;
+      height: 65%;
+
+      bottom: 7%;
+
+      background:
+        radial-gradient(
+          ellipse,
+          rgba(255, 190, 80, 0.13),
+          transparent 65%
+        );
+
+      filter: blur(30px);
+
+      pointer-events: none;
+    }
+
+    .velas {
+      position: relative;
+
+      z-index: 20;
+
+      width: 250px;
+
+      height: 130px;
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: flex-end;
+
+      gap: 20px;
+
+      margin-bottom: -5px;
+    }
+
+    .vela {
+      position: relative;
+
+      width: 16px;
+
+      height: 82px;
+
+      border-radius:
+        5px 5px 3px 3px;
+
+      background:
+        linear-gradient(
+          90deg,
+          #b58a35,
+          #f6d98c,
+          #b8862c
+        );
+
+      box-shadow:
+        inset 2px 0 rgba(255, 255, 255, 0.35),
+        0 0 8px rgba(255, 180, 60, 0.15);
+    }
+
+    .pavio {
+      position: absolute;
+
+      width: 2px;
+      height: 9px;
+
+      top: -8px;
+
+      left: 50%;
+
+      transform:
+        translateX(-50%);
+
+      background: #21160c;
+    }
+
+    .chama {
+      position: absolute;
+
+      left: 50%;
+      top: -38px;
+
+      width: 22px;
+      height: 36px;
+
+      transform:
+        translateX(-50%);
+
+      transform-origin:
+        center bottom;
+
+      cursor: pointer;
+
+      background:
+        radial-gradient(
+          ellipse at center bottom,
+          #fff7b0 0%,
+          #ffd45b 35%,
+          #ff8c24 65%,
+          transparent 72%
+        );
+
+      border-radius:
+        50% 50% 45% 45%;
+
+      filter:
+        drop-shadow(
+          0 0 8px rgba(255, 170, 40, 0.9)
+        );
+
+      animation:
+        chama
+        0.8s ease-in-out infinite alternate;
+
+      transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+    }
+
+    .chama::after {
+      content: "";
+
+      position: absolute;
+
+      width: 9px;
+      height: 17px;
+
+      left: 50%;
+      bottom: 3px;
+
+      transform:
+        translateX(-50%);
+
+      background: #fffbd2;
+
+      border-radius: 50%;
+    }
+
+    @keyframes chama {
+      from {
+        transform:
+          translateX(-50%)
+          rotate(-3deg)
+          scale(0.96);
+      }
+
+      to {
+        transform:
+          translateX(-50%)
+          rotate(3deg)
+          scale(1.05);
+      }
+    }
+
+    .vela.apagada .chama {
+      opacity: 0;
+
+      animation: none;
+
+      transform:
+        translateX(-50%)
+        scale(0.2);
+    }
+
+    .vela.apagada .pavio {
+      background: #111;
+    }
+
+    .andar-superior {
+      position: relative;
+
+      width: 48%;
+
+      min-width: 250px;
+
+      height: 115px;
+
+      border-radius:
+        20px 20px 12px 12px;
+
+      background:
+        linear-gradient(
+          180deg,
+          #f5dfb1 0%,
+          #d9b777 48%,
+          #9c7030 100%
+        );
+
+      box-shadow:
+        inset 0 7px 0 rgba(255, 255, 255, 0.25),
+        inset 0 -10px 0 rgba(91, 55, 17, 0.3),
+        0 20px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .andar-superior::before {
+      content: "";
+
+      position: absolute;
+
+      left: 5%;
+      right: 5%;
+
+      bottom: 22px;
+
+      height: 8px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(255, 241, 191, 0.6);
+
+      box-shadow:
+        0 0 10px rgba(255, 220, 130, 0.3);
+    }
+
+    .andar-superior::after {
+      content: "";
+
+      position: absolute;
+
+      left: 8%;
+      right: 8%;
+
+      bottom: 42px;
+
+      height: 3px;
+
+      background:
+        rgba(111, 72, 27, 0.35);
+    }
+
+    .numero {
+      position: absolute;
+
+      left: 50%;
+      top: 50%;
+
+      transform:
+        translate(-50%, -50%);
+
+      color: #fff1bd;
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size: 55px;
+
+      letter-spacing: 4px;
+
+      text-shadow:
+        0 2px 4px rgba(73, 40, 8, 0.6),
+        0 0 18px rgba(255, 210, 100, 0.45);
+
+      transition:
+        text-shadow 1s ease;
+    }
+
+    .cena.finalizada .numero {
+      text-shadow:
+        0 0 8px rgba(255, 239, 177, 0.9),
+        0 0 25px rgba(255, 204, 76, 0.8),
+        0 0 45px rgba(255, 184, 50, 0.5);
+    }
+
+    .cobertura {
+      width: 64%;
+
+      min-width: 330px;
+
+      height: 26px;
+
+      border-radius: 50%;
+
+      background:
+        linear-gradient(
+          180deg,
+          #ffe9b0,
+          #d2a858
+        );
+
+      box-shadow:
+        0 5px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .andar-inferior {
+      position: relative;
+
+      width: 78%;
+
+      min-width: 430px;
+
+      height: 170px;
+
+      border-radius:
+        25px 25px 15px 15px;
+
+      background:
+        linear-gradient(
+          180deg,
+          #f2dca9 0%,
+          #d0a85c 48%,
+          #8d6023 100%
+        );
+
+      box-shadow:
+        inset 0 9px 0 rgba(255, 255, 255, 0.25),
+        inset 0 -14px 0 rgba(78, 43, 11, 0.3),
+        0 35px 50px rgba(0, 0, 0, 0.7);
+    }
+
+    .andar-inferior::before {
+      content: "";
+
+      position: absolute;
+
+      left: 4%;
+      right: 4%;
+
+      top: 30px;
+
+      height: 5px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(255, 242, 195, 0.55);
+
+      box-shadow:
+        0 55px 0 rgba(255, 242, 195, 0.35);
+    }
+
+    .andar-inferior::after {
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+      right: 0;
+
+      bottom: -10px;
+
+      height: 18px;
+
+      border-radius: 50%;
+
+      background: #6d4619;
+
+      box-shadow:
+        0 8px 18px rgba(0, 0, 0, 0.7);
+    }
+
+    .prato {
+      position: absolute;
+
+      bottom: 3%;
+
+      width: 88%;
+
+      height: 25px;
+
+      border-radius: 50%;
+
+      background:
+        linear-gradient(
+          180deg,
+          #d9b667,
+          #79501c
+        );
+
+      box-shadow:
+        0 15px 30px rgba(0, 0, 0, 0.8);
+    }
+
+    .mensagem {
+      position: absolute;
+
+      z-index: 30;
+
+      bottom: 6%;
+
+      left: 50%;
+
+      width: 90%;
+
+      text-align: center;
+
+      transform:
+        translateX(-50%)
+        translateY(15px);
+
+      color:
+        rgba(255, 235, 185, 0.9);
+
+      font-size: 15px;
+
+      letter-spacing: 1.5px;
+
+      opacity: 0;
+
+      animation:
+        mensagemAparecer
+        2s ease 5s forwards;
+
+      transition:
+        opacity 1s ease,
+        transform 1s ease;
+    }
+
+    @keyframes mensagemAparecer {
+      to {
+        opacity: 1;
+
+        transform:
+          translateX(-50%)
+          translateY(0);
+      }
+    }
+
+    .mensagem.mensagem-final {
+      color: #ffe7a5;
+
+      text-shadow:
+        0 0 15px rgba(255, 190, 80, 0.45);
+
+      transform:
+        translateX(-50%)
+        translateY(0);
+    }
+
+    .botao-final {
+      position: fixed;
+
+      left: 50%;
+
+      bottom: 3%;
+
+      transform:
+        translateX(-50%)
+        translateY(20px);
+
+      z-index: 100;
+
+      padding: 13px 32px;
+
+      border:
+        1px solid
+        rgba(255, 220, 150, 0.5);
+
+      border-radius: 40px;
+
+      background:
+        rgba(0, 0, 0, 0.35);
+
+      backdrop-filter: blur(8px);
+
+      color: #f7dca0;
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size: 14px;
+
+      letter-spacing: 1.5px;
+
+      cursor: pointer;
+
+      opacity: 0;
+
+      pointer-events: none;
+
+      transition:
+        opacity 1s ease,
+        transform 1s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .botao-final.mostrar {
+      opacity: 1;
+
+      pointer-events: auto;
+
+      transform:
+        translateX(-50%)
+        translateY(0);
+    }
+
+    .botao-final:hover {
+      background:
+        rgba(255, 220, 150, 0.12);
+
+      box-shadow:
+        0 0 25px rgba(235, 190, 100, 0.3);
+    }
+
+    body.saindo {
+      opacity: 0;
+    }
+
+    @media (max-width: 700px) {
+      .bolo {
+        width: 94vw;
+
+        height: 70vh;
+      }
+
+      .velas {
+        width: 190px;
+
+        gap: 14px;
+      }
+
+      .vela {
+        width: 13px;
+
+        height: 65px;
+      }
+
+      .andar-superior {
+        width: 48%;
+
+        min-width: 190px;
+
+        height: 90px;
+      }
+
+      .andar-inferior {
+        width: 76%;
+
+        min-width: 300px;
+
+        height: 135px;
+      }
+
+      .cobertura {
+        min-width: 240px;
+      }
+
+      .numero {
+        font-size: 40px;
+      }
+
+      .mensagem {
+        bottom: 7%;
+
+        font-size: 12px;
+
+        letter-spacing: 1px;
+      }
+
+      .botao-final {
+        font-size: 12px;
+
+        padding: 12px 25px;
+
+        bottom: 2%;
+      }
+    }
+
+    @media (max-height: 650px) {
+      .bolo {
+        transform: scale(0.82);
+      }
+
+      .mensagem {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =====================================================
+       MÚSICA CONTÍNUA
+  ===================================================== -->
+
+  <audio id="musica" loop preload="auto">
+    <source src="musicas/aniversario.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="cena" id="cena">
+
+    <div class="escuridao"></div>
+
+    <div class="luz-ambiente"></div>
+
+    <div class="bolo">
+
+      <div class="brilho-bolo"></div>
+
+      <div class="velas">
+
+        <div class="vela">
+          <div class="pavio"></div>
+          <div class="chama"></div>
+        </div>
+
+        <div class="vela">
+          <div class="pavio"></div>
+          <div class="chama"></div>
+        </div>
+
+        <div class="vela">
+          <div class="pavio"></div>
+          <div class="chama"></div>
+        </div>
+
+        <div class="vela">
+          <div class="pavio"></div>
+          <div class="chama"></div>
+        </div>
+
+        <div class="vela">
+          <div class="pavio"></div>
+          <div class="chama"></div>
+        </div>
+
+        <div class="vela">
+          <div class="pavio"></div>
+          <div class="chama"></div>
+        </div>
+
+      </div>
+
+      <div class="andar-superior">
+        <div class="numero">20</div>
+      </div>
+
+      <div class="cobertura"></div>
+
+      <div class="andar-inferior"></div>
+
+      <div class="prato"></div>
+
+    </div>
+
+    <div class="mensagem" id="mensagem">
+      Hora de apagar as velinhas.
+    </div>
+
+    <button class="botao-final" id="botaoFinal">
+      Continuar →
+    </button>
+
+  </div>
+
+  <script>
+    /* =====================================================
+       MÚSICA CONTÍNUA
+    ===================================================== */
+
+    const musica =
+      document.getElementById("musica");
+
+    musica.volume = 0.35;
+
+    const POSICAO_MUSICA =
+      "posicaoMusica";
+
+    function salvarMusica() {
+      if (
+        musica.readyState >= 2 &&
+        !isNaN(musica.currentTime)
+      ) {
+        sessionStorage.setItem(
+          POSICAO_MUSICA,
+          musica.currentTime
+        );
+      }
+    }
+
+    function restaurarMusica() {
+      const posicao =
+        sessionStorage.getItem(
+          POSICAO_MUSICA
+        );
+
+      if (posicao !== null) {
+        musica.addEventListener(
+          "loadedmetadata",
+          () => {
+            try {
+              musica.currentTime =
+                parseFloat(posicao);
+            } catch (e) {}
+          },
+          { once: true }
+        );
+      }
+
+      musica.play().catch(() => {
+        console.log(
+          "O navegador bloqueou o autoplay com som."
+        );
+      });
+    }
+
+    window.addEventListener(
+      "load",
+      restaurarMusica
+    );
+
+    setInterval(salvarMusica, 500);
+
+    window.addEventListener(
+      "pagehide",
+      salvarMusica
+    );
+
+    /* =====================================================
+       ELEMENTOS
+    ===================================================== */
+
+    const cena =
+      document.getElementById("cena");
+
+    const mensagem =
+      document.getElementById("mensagem");
+
+    const botaoFinal =
+      document.getElementById("botaoFinal");
+
+    const velas =
+      document.querySelectorAll(".vela");
+
+    let velasApagadas = 0;
+
+    /* =====================================================
+       APAGAR VELAS
+    ===================================================== */
+
+    velas.forEach((vela) => {
+
+      const chama =
+        vela.querySelector(".chama");
+
+      chama.addEventListener(
+        "mouseenter",
+        () => {
+
+          if (
+            vela.classList.contains(
+              "apagada"
+            )
+          ) {
+            return;
+          }
+
+          vela.classList.add(
+            "apagada"
+          );
+
+          velasApagadas++;
+
+          if (
+            velasApagadas ===
+            velas.length
+          ) {
+            finalizarBolo();
+          }
+        }
+      );
+    });
+
+    /* =====================================================
+       FINALIZAÇÃO
+    ===================================================== */
+
+    function finalizarBolo() {
+
+      cena.classList.add(
+        "finalizada"
+      );
+
+      mensagem.textContent =
+        "Feliz aniversário meu amor. ❤️";
+
+      mensagem.classList.add(
+        "mensagem-final"
+      );
+
+      setTimeout(() => {
+        botaoFinal.classList.add(
+          "mostrar"
+        );
+      }, 1800);
+    }
+
+    /* =====================================================
+       BOTÃO → PÁGINA FINAL
+    ===================================================== */
+
+    botaoFinal.addEventListener(
+      "click",
+      () => {
+
+        salvarMusica();
+
+        document.body.classList.add(
+          "saindo"
+        );
+
+        setTimeout(() => {
+          window.location.href =
+            "fim.html";
+        }, 1500);
+      }
+    );
+  </script>
+
+</body>
+</html>
