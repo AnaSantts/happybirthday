@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Uma Carta Especial</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Georgia, "Times New Roman", serif;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+
+      body {
+        min-height: 100vh;
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+        padding: 20px;
+
+        overflow: hidden;
+
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)),
+          url("fotos/fundo.jpg");
+
+        background-size: cover;
+
+        background-position: center;
+
+        background-repeat: no-repeat;
+      }
+
+      .container {
+        width: 100%;
+
+        max-width: 680px;
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+      }
+
+      .carta {
+        width: 100%;
+
+        max-height: 88vh;
+
+        overflow: hidden;
+
+        padding: 35px 45px;
+
+        border-radius: 15px;
+
+        color: #3b2b20;
+
+        text-align: center;
+
+        background: linear-gradient(135deg, #fff8dc, #f1dfb5);
+
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.55);
+
+        transform: scale(0);
+
+        animation: abrirCarta 2s forwards;
+      }
+
+      @keyframes abrirCarta {
+        from {
+          transform: scale(0.1) rotateX(90deg);
+
+          opacity: 0;
+        }
+
+        to {
+          transform: scale(1) rotateX(0deg);
+
+          opacity: 1;
+        }
+      }
+
+      h1 {
+        color: #8b5a2b;
+
+        font-size: 34px;
+
+        font-weight: normal;
+
+        margin-bottom: 22px;
+
+        line-height: 1.2;
+      }
+
+      #textoCarta {
+        font-size: 20px;
+
+        line-height: 1.65;
+
+        min-height: 0;
+
+        max-height: 52vh;
+
+        overflow: hidden;
+
+        white-space: pre-line;
+
+        color: #3b2b20;
+      }
+
+      .cursor {
+        display: inline-block;
+
+        width: 2px;
+
+        height: 23px;
+
+        margin-left: 2px;
+
+        vertical-align: middle;
+
+        background: #3b2b20;
+
+        animation: piscar 0.7s infinite;
+      }
+
+      @keyframes piscar {
+        50% {
+          opacity: 0;
+        }
+      }
+
+      button {
+        margin-top: 25px;
+
+        padding: 12px 35px;
+
+        border: none;
+
+        border-radius: 30px;
+
+        background: #8b5a2b;
+
+        color: white;
+
+        font-size: 16px;
+
+        font-family: Georgia, "Times New Roman", serif;
+
+        cursor: pointer;
+
+        transition: transform 0.4s ease, box-shadow 0.4s ease,
+          background 0.4s ease;
+
+        opacity: 0;
+
+        animation: aparecerBotao 1s ease forwards;
+
+        animation-delay: 2s;
+      }
+
+      button:hover {
+        transform: scale(1.08);
+
+        background: #a16b35;
+
+        box-shadow: 0 0 20px rgba(139, 90, 43, 0.7);
+      }
+
+      @keyframes aparecerBotao {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+
+      @media (max-width: 600px) {
+        body {
+          padding: 15px;
+        }
+
+        .container {
+          width: 100%;
+        }
+
+        .carta {
+          width: 100%;
+
+          max-height: 90vh;
+
+          padding: 25px 22px;
+
+          border-radius: 13px;
+        }
+
+        h1 {
+          font-size: 27px;
+
+          margin-bottom: 18px;
+        }
+
+        #textoCarta {
+          font-size: 17px;
+
+          line-height: 1.55;
+
+          max-height: 58vh;
+        }
+
+        .cursor {
+          height: 20px;
+        }
+
+        button {
+          margin-top: 20px;
+
+          padding: 11px 28px;
+
+          font-size: 15px;
+        }
+      }
+
+      @media (max-height: 650px) {
+        body {
+          padding: 12px;
+        }
+
+        .carta {
+          max-height: 92vh;
+
+          padding: 20px 22px;
+        }
+
+        h1 {
+          font-size: 25px;
+
+          margin-bottom: 12px;
+        }
+
+        #textoCarta {
+          font-size: 16px;
+
+          line-height: 1.45;
+
+          max-height: 58vh;
+        }
+
+        button {
+          margin-top: 15px;
+
+          padding: 9px 25px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- =====================================================
+       MÚSICA CONTÍNUA
+  ===================================================== -->
+
+    <audio id="musica" loop preload="auto">
+      <source src="musicas/aniversario.mp3" type="audio/mpeg" />
+    </audio>
+
+    <div class="container">
+      <div class="carta">
+        <h1>Para você ❤️</h1>
+
+        <p id="textoCarta"></p>
+
+        <span class="cursor"></span>
+
+        <button onclick="continuar()">Continuar</button>
+      </div>
+    </div>
+
+    <script>
+      /* =====================================================
+       MÚSICA CONTÍNUA
+    ===================================================== */
+
+      const musica = document.getElementById("musica");
+
+      musica.volume = 0.35;
+
+      const POSICAO_MUSICA = "posicaoMusica";
+
+      function salvarMusica() {
+        if (musica.readyState >= 2 && !isNaN(musica.currentTime)) {
+          sessionStorage.setItem(POSICAO_MUSICA, musica.currentTime);
+        }
+      }
+
+      function restaurarMusica() {
+        const posicao = sessionStorage.getItem(POSICAO_MUSICA);
+
+        if (posicao !== null) {
+          musica.addEventListener(
+            "loadedmetadata",
+            () => {
+              try {
+                musica.currentTime = parseFloat(posicao);
+              } catch (e) {}
+            },
+            { once: true }
+          );
+        }
+
+        musica.play().catch(() => {
+          console.log("O navegador bloqueou o autoplay com som.");
+        });
+      }
+
+      window.addEventListener("load", restaurarMusica);
+
+      setInterval(salvarMusica, 500);
+
+      window.addEventListener("pagehide", salvarMusica);
+
+      /* =====================================================
+       MENSAGEM
+    ===================================================== */
+
+      const mensagem = `Enquanto você olha para tudo isso, espero que consiga perceber uma coisa: você mudou, cresceu e viveu muito mais do que talvez imagine.
+
+Cada foto guarda um pedacinho da sua história, de quem você foi e de quem você se tornou.
+
+E hoje, ao completar mais um ano, quero que você olhe para trás com orgulho e para frente com esperança.
+
+Ainda existem muitos capítulos para viver, muitos momentos para guardar e muitas histórias que ainda serão escritas.
+
+Feliz aniversário. Que os próximos anos sejam tão especiais quanto todos aqueles que trouxeram você até aqui. ❤️`;
+
+      let contador = 0;
+
+      function escrever() {
+        if (contador < mensagem.length) {
+          document.getElementById("textoCarta").textContent +=
+            mensagem.charAt(contador);
+
+          contador++;
+
+          setTimeout(escrever, 45);
+        }
+      }
+
+      escrever();
+
+      /* =====================================================
+       PRÓXIMA PÁGINA
+    ===================================================== */
+
+      function continuar() {
+        salvarMusica();
+
+        window.location.href = "bolo.html";
+      }
+    </script>
+  </body>
+</html>
