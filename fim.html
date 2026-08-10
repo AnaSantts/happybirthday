@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Feliz Aniversário</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+
+        font-family: Georgia, "Times New Roman", serif;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+
+      body {
+        min-height: 100vh;
+
+        overflow: hidden;
+
+        background: radial-gradient(
+          circle at center,
+          #34251b 0%,
+          #15100c 50%,
+          #050403 100%
+        );
+
+        color: white;
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+        text-align: center;
+
+        padding: 20px;
+      }
+
+      body::before {
+        content: "";
+
+        position: fixed;
+
+        width: 70vw;
+        height: 70vw;
+
+        max-width: 700px;
+        max-height: 700px;
+
+        top: 50%;
+        left: 50%;
+
+        transform: translate(-50%, -50%);
+
+        background: radial-gradient(
+          circle,
+          rgba(218, 178, 90, 0.16),
+          transparent 65%
+        );
+
+        filter: blur(40px);
+
+        pointer-events: none;
+      }
+
+      .container {
+        position: relative;
+
+        z-index: 5;
+
+        width: 100%;
+
+        max-width: 700px;
+
+        max-height: 94vh;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        animation: aparecer 2s ease;
+      }
+
+      .fotoFinal {
+        width: min(280px, 45vw);
+
+        height: min(350px, 42vh);
+
+        object-fit: contain;
+
+        background: #080604;
+
+        padding: 8px;
+
+        border: 1px solid #d8b467;
+
+        box-shadow: 0 0 35px rgba(218, 178, 90, 0.22),
+          0 20px 45px rgba(0, 0, 0, 0.65);
+
+        animation: flutuar 5s infinite alternate ease-in-out;
+      }
+
+      h1 {
+        margin-top: 25px;
+
+        font-size: 48px;
+
+        font-weight: normal;
+
+        color: #f5d76e;
+
+        text-shadow: 0 0 20px rgba(218, 178, 90, 0.6);
+
+        animation: brilho 2s infinite alternate;
+      }
+
+      p {
+        font-size: 20px;
+
+        max-width: 620px;
+
+        margin: 18px auto 0;
+
+        padding: 0 15px;
+
+        line-height: 1.6;
+
+        color: #eee;
+
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+      }
+
+      button {
+        margin-top: 24px;
+
+        padding: 12px 32px;
+
+        border-radius: 40px;
+
+        border: 1px solid rgba(255, 220, 150, 0.5);
+
+        background: linear-gradient(45deg, #9d752c, #f5d77e);
+
+        color: #2a1c0d;
+
+        font-size: 16px;
+
+        font-family: Georgia, "Times New Roman", serif;
+
+        cursor: pointer;
+
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+      }
+
+      button:hover {
+        transform: scale(1.08);
+
+        box-shadow: 0 0 30px rgba(218, 178, 90, 0.65);
+      }
+
+      .confete {
+        position: absolute;
+
+        width: 8px;
+
+        height: 8px;
+
+        top: -20px;
+
+        background: #e8c76b;
+
+        opacity: 0.65;
+
+        animation: cair linear infinite;
+
+        pointer-events: none;
+      }
+
+      .confete:nth-child(2) {
+        width: 6px;
+        height: 10px;
+      }
+
+      .confete:nth-child(3) {
+        width: 9px;
+        height: 6px;
+      }
+
+      .confete:nth-child(4) {
+        width: 5px;
+        height: 8px;
+      }
+
+      .confete:nth-child(5) {
+        width: 8px;
+        height: 5px;
+      }
+
+      @keyframes cair {
+        to {
+          transform: translateY(110vh) rotate(360deg);
+        }
+      }
+
+      @keyframes aparecer {
+        from {
+          opacity: 0;
+
+          transform: translateY(40px);
+        }
+
+        to {
+          opacity: 1;
+
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes flutuar {
+        from {
+          transform: translateY(0);
+        }
+
+        to {
+          transform: translateY(-10px);
+        }
+      }
+
+      @keyframes brilho {
+        from {
+          text-shadow: 0 0 12px rgba(218, 178, 90, 0.5);
+        }
+
+        to {
+          text-shadow: 0 0 35px rgba(218, 178, 90, 0.9);
+        }
+      }
+
+      @media (max-width: 600px) {
+        body {
+          padding: 15px;
+        }
+
+        .container {
+          max-height: 94vh;
+        }
+
+        .fotoFinal {
+          width: min(230px, 58vw);
+
+          height: min(290px, 35vh);
+
+          padding: 6px;
+        }
+
+        h1 {
+          margin-top: 18px;
+
+          font-size: 34px;
+        }
+
+        p {
+          font-size: 16px;
+
+          line-height: 1.5;
+
+          margin-top: 12px;
+
+          max-width: 95%;
+        }
+
+        button {
+          margin-top: 18px;
+
+          padding: 10px 26px;
+
+          font-size: 14px;
+        }
+      }
+
+      @media (max-height: 650px) {
+        .fotoFinal {
+          width: 190px;
+
+          height: 230px;
+        }
+
+        h1 {
+          margin-top: 12px;
+
+          font-size: 30px;
+        }
+
+        p {
+          font-size: 15px;
+
+          line-height: 1.4;
+
+          margin-top: 8px;
+        }
+
+        button {
+          margin-top: 12px;
+
+          padding: 9px 24px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- =====================================================
+       MÚSICA CONTÍNUA
+  ===================================================== -->
+
+    <audio id="musica" loop preload="auto">
+      <source src="musicas/aniversario.mp3" type="audio/mpeg" />
+    </audio>
+
+    <!-- =====================================================
+       CONFETES
+  ===================================================== -->
+
+    <div class="confete" style="left: 10%; animation-duration: 5s"></div>
+
+    <div class="confete" style="left: 25%; animation-duration: 7s"></div>
+
+    <div class="confete" style="left: 40%; animation-duration: 4s"></div>
+
+    <div class="confete" style="left: 60%; animation-duration: 6s"></div>
+
+    <div class="confete" style="left: 80%; animation-duration: 8s"></div>
+
+    <!-- =====================================================
+       CONTEÚDO FINAL
+  ===================================================== -->
+
+    <div class="container">
+      <img class="fotoFinal" src="fotos/21.png" alt="Foto final" />
+
+      <h1>Feliz aniversário ❤️</h1>
+
+      <p>
+        Que os próximos capítulos da sua vida sejam ainda mais incríveis. Que
+        nunca faltem motivos para sorrir, sonhos para realizar e pessoas
+        especiais ao seu lado.
+      </p>
+
+      <button onclick="reiniciar()">Reviver história</button>
+    </div>
+
+    <script>
+      /* =====================================================
+       MÚSICA CONTÍNUA
+    ===================================================== */
+
+      const musica = document.getElementById("musica");
+
+      musica.volume = 0.35;
+
+      const POSICAO_MUSICA = "posicaoMusica";
+
+      function salvarMusica() {
+        if (musica.readyState >= 2 && !isNaN(musica.currentTime)) {
+          sessionStorage.setItem(POSICAO_MUSICA, musica.currentTime);
+        }
+      }
+
+      function restaurarMusica() {
+        const posicao = sessionStorage.getItem(POSICAO_MUSICA);
+
+        if (posicao !== null) {
+          musica.addEventListener(
+            "loadedmetadata",
+            () => {
+              try {
+                musica.currentTime = parseFloat(posicao);
+              } catch (e) {}
+            },
+            { once: true }
+          );
+        }
+
+        musica.play().catch(() => {
+          console.log("O navegador bloqueou o autoplay com som.");
+        });
+      }
+
+      window.addEventListener("load", restaurarMusica);
+
+      setInterval(salvarMusica, 500);
+
+      window.addEventListener("pagehide", salvarMusica);
+
+      /* =====================================================
+       RECOMEÇAR
+    ===================================================== */
+
+      function reiniciar() {
+        sessionStorage.removeItem(POSICAO_MUSICA);
+
+        window.location.href = "index.html";
+      }
+    </script>
+  </body>
+</html>
